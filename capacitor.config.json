@@ -1,0 +1,9 @@
+{
+  "appId": "com.youliso.demo",
+  "appName": "capacitor-web",
+  "webDir": "view/dist",
+  "server": {
+    "androidScheme": "http",
+    "url": "http://10.0.2.2:5173"
+  }
+}
