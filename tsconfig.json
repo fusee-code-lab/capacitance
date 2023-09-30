@@ -27,5 +27,12 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.vue", "src/**/*.tsx"]
+  "include": [
+    "electronic/**/*.d.ts",
+    "electronic/**/*.ts",
+    "web/**/*.d.ts",
+    "web/**/*.ts",
+    "web/**/*.vue",
+    "web/**/*.tsx"
+  ]
 }
