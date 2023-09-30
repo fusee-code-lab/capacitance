@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const { external, plugins } = require('./base');
 
 module.exports = {
-  input: resolve('src/preload/index.ts'),
+  input: resolve('electronic/preload/index.ts'),
   output: {
     file: resolve('dist/preload/index.js'),
     format: 'cjs',

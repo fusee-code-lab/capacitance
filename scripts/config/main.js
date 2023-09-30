@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const { external, plugins } = require('./base');
 
 module.exports = {
-  input: resolve('src/main/index.ts'),
+  input: resolve('electronic/main/index.ts'),
   output: {
     file: resolve('dist/main/index.js'),
     format: 'cjs',

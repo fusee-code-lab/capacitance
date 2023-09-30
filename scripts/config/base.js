@@ -24,7 +24,7 @@ let plugins = [
     json(),
     image(),
     alias({
-        entries: [{find: '@', replacement: resolve('src')}]
+        entries: [{find: '@', replacement: resolve('./')}]
     }),
     esbuild({
         include: /\.[jt]s?$/,
