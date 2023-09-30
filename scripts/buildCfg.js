@@ -1,9 +1,10 @@
 const fs = require('fs');
 const { resolve } = require('path');
-const { name, productName } = require('../package.json');
 const config = require('../resources/build/cfg/build.json');
 const windowConfig = require('../electronic/cfg/window.json');
 const updateConfig = require('../electronic/cfg/update.json');
+const { electronicExclude } = require('./config/base');
+let package = require('../package.json');
 
 /** 渲染进程不需要打包到file的包 */
 // config.files.push('!**/node_modules/包名');
@@ -15,27 +16,27 @@ config.publish = [
     url: updateConfig.url
   }
 ];
-config.productName = name;
-config.appId = `org.${name}`;
+config.productName = package.name;
+config.appId = `org.${package.name}`;
 config.npmRebuild = true; //是否Rebuild编译
-config.asar = true; //是否asar打包
+config.asar = false; //是否asar打包
 
 /** 窗口配置 **/
-windowConfig.customize.title = productName;
+windowConfig.customize.title = package.productName;
 
 /** win配置 **/
 config.nsis.displayLanguageSelector = false; //安装包语言提示
 config.nsis.menuCategory = false; //是否创建开始菜单目录
-config.nsis.shortcutName = name; //快捷方式名称(可中文)
+config.nsis.shortcutName = package.name; //快捷方式名称(可中文)
 config.nsis.allowToChangeInstallationDirectory = true; //是否允许用户修改安装为位置
 config.win.requestedExecutionLevel = ['asInvoker', 'highestAvailable'][0]; //应用权限
 
 /** linux配置 **/
 config.linux.target = 'AppImage'; //默认为AppImage
-config.linux.executableName = name;
+config.linux.executableName = package.name;
 
 //更新配置
-updateConfig.dirname = `${name.toLowerCase()}-updater`;
+updateConfig.dirname = `${package.name.toLowerCase()}-updater`;
 let update =
   'provider: ' +
   updateConfig.provider +
@@ -102,3 +103,9 @@ fs.writeFileSync('./resources/build/cfg/build.json', JSON.stringify(config, null
 fs.writeFileSync('./resources/build/cfg/installer.nsh', nsh);
 fs.writeFileSync(resolve('electronic/cfg/window.json'), JSON.stringify(windowConfig, null, 2));
 fs.writeFileSync(resolve('electronic/cfg/update.json'), JSON.stringify(updateConfig, null, 2));
+delete package.scripts;
+delete package.devDependencies;
+for (let dependencie in package.dependencies) {
+  electronicExclude.indexOf(dependencie) !== -1 && delete package.dependencies[dependencie];
+}
+fs.writeFileSync(resolve('app/package.json'), JSON.stringify(package, null, 2));

@@ -4,7 +4,7 @@ const { external, plugins } = require('./base');
 module.exports = {
   input: resolve('electronic/main/index.ts'),
   output: {
-    file: resolve('dist/main/index.js'),
+    file: resolve('app/dist/main/index.js'),
     format: 'cjs',
     sourcemap: false
   },

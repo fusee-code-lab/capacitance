@@ -2,7 +2,6 @@
   "name": "capacitance",
   "version": "0.0.1",
   "description": "electron capacitor vue",
-  "main": "dist/main/index.js",
   "author": {
     "name": "youliso",
     "email": "youliso@Hotmail.com"

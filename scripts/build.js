@@ -3,7 +3,6 @@ const readline = require('readline');
 const util = require('util');
 const path = require('path');
 const rollup = require('rollup');
-const vite = require('vite');
 const builder = require('electron-builder');
 const buildConfig = require('../resources/build/cfg/build.json');
 const mainOptions = require('./config/main');
@@ -11,17 +10,7 @@ const preloadOptions = require('./config/preload');
 
 let [, , arch, _notP] = process.argv;
 
-const optional = [
-  'win',
-  'win32',
-  'win64',
-  'winp',
-  'winp32',
-  'winp64',
-  'darwin',
-  'mac',
-  'linux'
-];
+const optional = ['win', 'win32', 'win64', 'winp', 'winp32', 'winp64', 'darwin', 'mac', 'linux'];
 const linuxOptional = ['AppImage', 'snap', 'deb', 'rpm', 'pacman'];
 const notP_optional = '-notp';
 let pushLinuxOptional = false;
@@ -60,6 +49,28 @@ function deleteFolderRecursive(url) {
 
 buildConfig.afterPack = 'scripts/buildAfterPack.js';
 
+buildConfig.files = [
+  'dist/**/*',
+  {
+    from: '../webdist',
+    to: 'webdist/',
+    filter: ['**/*']
+  },
+  {
+    from: '../resources/inside',
+    to: 'inside/',
+    filter: ['**/*']
+  }
+];
+
+buildConfig.extraFiles = [
+  {
+    from: 'resources/root',
+    to: './',
+    filter: ['**/*']
+  }
+];
+
 buildConfig.extraResources = [
   {
     from: 'resources/extern',
@@ -80,11 +91,11 @@ function checkInput(str) {
 function platformOptional() {
   switch (process.platform) {
     case 'win32':
-      return ['web',...optional.filter((item) => item.startsWith('win'))];
+      return ['web', ...optional.filter((item) => item.startsWith('win'))];
     case 'linux':
-      return ['web',...optional.filter((item) => !(item === 'mac' || item === 'darwin'))];
+      return ['web', ...optional.filter((item) => !(item === 'mac' || item === 'darwin'))];
     default:
-      return ['web',...optional];
+      return ['web', ...optional];
   }
 }
 
@@ -109,7 +120,6 @@ async function preloadBuild() {
       process.exit(1);
     });
 }
-
 
 async function core(arch) {
   arch = arch.trim();

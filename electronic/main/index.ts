@@ -43,7 +43,7 @@ if (!app.isPackaged) {
 } else {
   windowInstance.setDefaultCfg({
     defaultLoadType: 'file',
-    defaultUrl: join(__dirname, '../renderer/index.html'),
+    defaultUrl: join(__dirname, '../../webdist/index.html'),
     defaultPreload: join(__dirname, '../preload/index.js'),
     defaultCustomize: customize,
     defaultBrowserWindowOptions: browserWindowOptions

@@ -1,7 +1,6 @@
 const { defineConfig } = require('vite');
 const vuePlugin = require('@vitejs/plugin-vue');
 const { resolve } = require('path');
-const { external } = require('./base');
 const root = resolve('web');
 const outDir = resolve('webdist');
 
@@ -22,9 +21,6 @@ module.exports = defineConfig({
     alias: {
       '@': resolve('./')
     }
-  },
-  optimizeDeps: {
-    exclude: external
   },
   plugins: [vuePlugin()]
 });

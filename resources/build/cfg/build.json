@@ -3,27 +3,14 @@
   "productName": "capacitance",
   "appId": "org.capacitance",
   "copyright": "MIT",
-  "asar": true,
+  "asar": false,
   "afterPack": "scripts/buildAfterPack.js",
   "directories": {
     "output": "out"
   },
-  "files": [
-    "view/dist/**/*",
-    {
-      "from": "resources/inside",
-      "to": "inside/",
-      "filter": [
-        "**/*"
-      ]
-    }
-  ],
-  "extraFiles": [
-    {
-      "from": "resources/root",
-      "to": "./"
-    }
-  ],
+  "extraMetadata": {
+    "main": "dist/main/index.js"
+  },
   "nsis": {
     "oneClick": false,
     "perMachine": true,
@@ -87,6 +74,32 @@
     {
       "from": "resources/extern",
       "to": "extern/",
+      "filter": [
+        "**/*"
+      ]
+    }
+  ],
+  "extraFiles": [
+    {
+      "from": "resources/root",
+      "to": "./",
+      "filter": [
+        "**/*"
+      ]
+    }
+  ],
+  "files": [
+    "dist/**/*",
+    {
+      "from": "../webdist",
+      "to": "webdist/",
+      "filter": [
+        "**/*"
+      ]
+    },
+    {
+      "from": "../resources/inside",
+      "to": "inside/",
       "filter": [
         "**/*"
       ]
