@@ -1,5 +1,8 @@
 <template>
-  <div class='info'>hello</div>
+  <div class='info'>
+    <h1>hello</h1>
+    <button class="btn">Button</button>
+  </div>
 </template>
 <script lang='ts'>
 import { defineComponent, onMounted } from 'vue';

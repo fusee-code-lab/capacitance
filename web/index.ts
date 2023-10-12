@@ -3,7 +3,7 @@ import { windowLoad } from '@youliso/electronic/ipc/window';
 import { getPlatform } from '@/web/common';
 import App from '@/web/views/app.vue';
 import router from '@/web/router';
-import '@/web/views/style/index.scss';
+import '@/web/views/style/index.css';
 
 switch (getPlatform()) {
   case 'win32':
