@@ -23,6 +23,10 @@ import logo from '@/electronic/assets/icon/logo.png';
 // @ts-ignore
 let browserWindowOptions: BrowserWindowConstructorOptions = opt;
 
+if (process.platform === 'linux') {
+  browserWindowOptions.frame = true;
+}
+
 // 设置窗口管理默认参数
 if (!app.isPackaged) {
   // 调试模式
