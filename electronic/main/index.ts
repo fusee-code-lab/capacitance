@@ -93,11 +93,15 @@ app
 
     windowInstance.interceptor = (browserWindowOptions) => {
       if (browserWindowOptions.titleBarStyle === 'hidden') {
-        browserWindowOptions.titleBarOverlay = {
-          color: nativeTheme.shouldUseDarkColors ? '#1e1e1e' : '#ffffff',
-          symbolColor: nativeTheme.shouldUseDarkColors ? '#ffffff' : '#000000',
-          height: 32
-        };
+        switch (process.platform) {
+          case 'win32':
+            browserWindowOptions.titleBarOverlay = {
+              color: nativeTheme.shouldUseDarkColors ? '#1e1e1e' : '#ffffff',
+              symbolColor: nativeTheme.shouldUseDarkColors ? '#ffffff' : '#000000',
+              height: 32
+            };
+            break;
+        }
       }
       return {
         ...browserWindowOptions
@@ -107,10 +111,14 @@ app
     // 监听系统主题变化
     nativeTheme.on('updated', () => {
       windowInstance.getAll().forEach((win) => {
-        win.setTitleBarOverlay({
-          color: nativeTheme.shouldUseDarkColors ? '#1e1e1e' : '#ffffff',
-          symbolColor: nativeTheme.shouldUseDarkColors ? '#ffffff' : '#000000'
-        });
+        switch (process.platform) {
+          case 'win32':
+            win.setTitleBarOverlay({
+              color: nativeTheme.shouldUseDarkColors ? '#1e1e1e' : '#ffffff',
+              symbolColor: nativeTheme.shouldUseDarkColors ? '#ffffff' : '#000000'
+            });
+            break;
+        }
       });
     });
 
