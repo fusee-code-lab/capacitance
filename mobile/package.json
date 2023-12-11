@@ -1,0 +1,22 @@
+{
+  "name": "capacitance",
+  "version": "0.0.1",
+  "description": "capacitor",
+  "author": {
+    "name": "youliso",
+    "email": "youliso@Hotmail.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "addandroid": "cap add android",
+    "openandroid": "cap open android",
+    "addios": "cap add ios",
+    "openios": "cap open ios",
+    "sync": "cap sync"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^5.5.0",
+    "@capacitor/cli": "^5.5.0",
+    "@capacitor/ios": "^5.5.0"
+  }
+}
