@@ -1,7 +1,0 @@
-{
-  "name": "capacitor-web",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "custom"
-}

@@ -1,2 +1,2 @@
 # capacitance
-electron capacitor vue
+electron capacitor
