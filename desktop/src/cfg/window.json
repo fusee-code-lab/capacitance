@@ -1,0 +1,13 @@
+{
+  "opt": {
+    "width": 800,
+    "height": 600,
+    "titleBarStyle": "hidden",
+    "frame": false,
+    "show": true
+  },
+  "customize": {
+    "title": "capacitance",
+    "route": "/"
+  }
+}
