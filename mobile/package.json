@@ -9,9 +9,9 @@
   "license": "MIT",
   "scripts": {
     "addandroid": "cap add android",
-    "openandroid": "cap open android",
+    "runandroid": "cap run android",
     "addios": "cap add ios",
-    "openios": "cap open ios",
+    "runios": "cap run ios",
     "sync": "cap sync"
   },
   "devDependencies": {
