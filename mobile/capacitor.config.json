@@ -4,6 +4,6 @@
   "webDir": "../lib/dist",
   "server": {
     "androidScheme": "http",
-    "url": "http://10.0.2.2:3333"
+    "url": " http://192.168.15.166:3333"
   }
 }
