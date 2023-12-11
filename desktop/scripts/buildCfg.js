@@ -17,7 +17,7 @@ config.publish = [
 config.productName = name;
 config.appId = `org.${author.name}.${name}`;
 config.npmRebuild = true; //是否Rebuild编译
-config.asar = false; //是否asar打包
+config.asar = true; //是否asar打包
 
 /** 窗口配置 **/
 windowConfig.customize.title = productName;
