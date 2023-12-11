@@ -1,5 +1,12 @@
 {
-  "name": "electron",
+  "name": "electrondemo",
+  "productName": "electrondemo",
+  "version": "1.0.0",
+  "description": "electrondemo",
+  "author": {
+    "name": "youliso",
+    "email": "youliso@Hotmail.com"
+  },
   "main": "dist/main/index.js",
   "scripts": {
     "dev": "node scripts/buildCfg.js && node scripts/dev.js",

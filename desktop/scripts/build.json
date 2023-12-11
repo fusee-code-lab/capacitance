@@ -1,14 +1,21 @@
 {
   "compression": "maximum",
-  "productName": "electron-template",
-  "appId": "org.youliso.electron-template",
+  "productName": "electrondemo",
+  "appId": "org.youliso.electrondemo",
   "copyright": "MIT",
-  "asar": true,
+  "asar": false,
   "directories": {
     "output": "out"
   },
   "files": [
     "dist/**/*",
+    {
+      "from": "../lib/dist",
+      "to": "dist/renderer",
+      "filter": [
+        "**/*"
+      ]
+    },
     {
       "from": "resources/inside",
       "to": "inside/",
@@ -35,7 +42,7 @@
     "uninstallerSidebar": "scripts/icons/modern-wizard.bmp",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "electron-template",
+    "shortcutName": "electrondemo",
     "include": "scripts/installer.nsh",
     "menuCategory": false,
     "displayLanguageSelector": false
@@ -73,7 +80,7 @@
   "linux": {
     "icon": "scripts/icons",
     "target": "AppImage",
-    "executableName": "electron-template",
+    "executableName": "electrondemo",
     "category": "Utility"
   },
   "npmRebuild": true,
@@ -91,6 +98,5 @@
         "**/*"
       ]
     }
-  ],
-  "afterPack": "scripts/buildAfterPack.js"
+  ]
 }
