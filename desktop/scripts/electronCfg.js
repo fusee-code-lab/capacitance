@@ -6,13 +6,13 @@ const alias = require('@rollup/plugin-alias');
 const json = require('@rollup/plugin-json');
 const image = require('@rollup/plugin-image');
 const esbuild = require('rollup-plugin-esbuild').default;
-const { dependencies } = require('../../package.json');
+const { dependencies } = require('../package.json');
 
 let external = [...builtinModules, 'electron'];
 
 for (const i in dependencies) external.push(i);
 
-let plugins = [
+const plugins = (env) => [
   nodeResolve({
     preferBuiltins: true,
     browser: false,
@@ -30,7 +30,7 @@ let plugins = [
     include: /\.[jt]s?$/,
     exclude: /node_modules/,
     sourceMap: false,
-    minify: process.env['mainMode'] !== 'development',
+    minify: env !== 'development',
     target: 'esnext',
     define: {
       __VERSION__: '"x.y.z"'
@@ -42,4 +42,25 @@ let plugins = [
   })
 ];
 
-module.exports = { external, plugins };
+module.exports = {
+  mainOptions: (env) => ({
+    input: resolve('src/main/index.ts'),
+    output: {
+      file: resolve('dist/main/index.js'),
+      format: 'cjs',
+      sourcemap: false
+    },
+    external,
+    plugins: plugins(env)
+  }),
+  preloadOptions: (env) => ({
+    input: resolve('src/preload/index.ts'),
+    output: {
+      file: resolve('dist/preload/index.js'),
+      format: 'cjs',
+      sourcemap: false
+    },
+    external,
+    plugins: plugins(env)
+  })
+};

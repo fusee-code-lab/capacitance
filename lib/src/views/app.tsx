@@ -1,8 +1,6 @@
 import { windowShow } from '@youliso/electronic/ipc';
 
-console.log('11')
-export const onReay = () => {
-  console.log('11')
+export const onReady = () => {
   // @ts-ignore
   window.ipc && windowShow();
 };

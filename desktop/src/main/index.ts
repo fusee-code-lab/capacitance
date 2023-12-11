@@ -85,7 +85,7 @@ app
     // 创建更新
     const update = new Update(
       { provider: updateCfg.provider as any, url: updateCfg.url },
-      'resources/build/cfg/app-update.yml',
+      'scripts/app-update.yml',
       updateCfg.dirname
     );
     // 创建session

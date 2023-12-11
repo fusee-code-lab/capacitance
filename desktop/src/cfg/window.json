@@ -4,7 +4,7 @@
     "height": 600,
     "titleBarStyle": "hidden",
     "frame": false,
-    "show": true
+    "show": false
   },
   "customize": {
     "title": "capacitance",

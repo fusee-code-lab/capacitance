@@ -1,15 +1,14 @@
 const rollup = require('rollup');
 const { spawn } = require('child_process');
 const electron = require('electron');
-
-process.env['mainMode'] = 'development';
+const { mainOptions, preloadOptions } = require('./electronCfg');
 
 let electronProcess = null;
 let manualRestart = false;
 
 async function startMain() {
   return new Promise((resolve, reject) => {
-    const watcher = rollup.watch([require('./config/main'), require('./config/preload')]);
+    const watcher = rollup.watch([mainOptions('development'), preloadOptions('development')]);
     watcher.on('event', (event) => {
       if (event.code === 'END') {
         if (electronProcess && electronProcess.kill) {

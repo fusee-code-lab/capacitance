@@ -4,9 +4,8 @@ const util = require('util');
 const path = require('path');
 const rollup = require('rollup');
 const builder = require('electron-builder');
-const buildConfig = require('../resources/build/cfg/build.json');
-const mainOptions = require('./config/main');
-const preloadOptions = require('./config/preload');
+const buildConfig = require('./build.json');
+const { mainOptions, preloadOptions } = require('./electronCfg');
 
 let [, , arch] = process.argv;
 
@@ -87,9 +86,10 @@ function platformOptional() {
 }
 
 async function mainBuild() {
+  const opt = mainOptions();
   await rollup
-    .rollup(mainOptions)
-    .then(async (build) => await build.write(mainOptions.output))
+    .rollup(opt)
+    .then(async (build) => await build.write(opt.output))
     .catch((error) => {
       console.log(`\x1B[31mFailed to build main process !\x1B[0m`);
       console.error(error);
@@ -98,9 +98,10 @@ async function mainBuild() {
 }
 
 async function preloadBuild() {
+  const opt = preloadOptions();
   await rollup
-    .rollup(preloadOptions)
-    .then(async (build) => await build.write(preloadOptions.output))
+    .rollup(opt)
+    .then(async (build) => await build.write(opt.output))
     .catch((error) => {
       console.log(`\x1B[31mFailed to build preload process !\x1B[0m`);
       console.error(error);
@@ -108,9 +109,7 @@ async function preloadBuild() {
     });
 }
 
-async function rendererBuild() {
-  
-}
+async function rendererBuild() {}
 
 async function core(arch) {
   arch = arch.trim();
@@ -184,7 +183,7 @@ async function core(arch) {
       filter: ['**/*']
     });
   } catch (err) {}
-  fs.writeFileSync('./resources/build/cfg/build.json', JSON.stringify(buildConfig, null, 2)); //写入配置
+  fs.writeFileSync('./build.json', JSON.stringify(buildConfig, null, 2)); //写入配置
   deleteFolderRecursive(path.resolve('dist')); //清除dist
   console.log(`\x1B[34m[${arch} build start]\x1B[0m`);
   await mainBuild();
