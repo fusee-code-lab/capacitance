@@ -1,12 +1,14 @@
-import pageRoute from "@/router/modular/page";
-import dialogRoute from "@/router/modular/dialog";
-import { Router } from "@youliso/granule";
+import { createRouter, createWebHashHistory } from 'vue-router';
 
-const router = new Router("hash", {
-  "/": {
-    component: () => import("@/views/app"),
-    children: Object.assign(pageRoute, dialogRoute),
-  },
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes: [
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('@/views/pages/home/index.vue')
+    }
+  ]
 });
 
 export default router;

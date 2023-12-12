@@ -1,5 +1,8 @@
 import { windowLoad } from '@youliso/electronic/ipc/window';
 import { getPlatform } from '@/common';
+import { createApp } from 'vue';
+import App from '@/views/app.vue';
+import router from '@/router';
 
 switch (getPlatform()) {
   case 'win32':
@@ -8,12 +11,20 @@ switch (getPlatform()) {
     windowLoad((_, args) => {
       // @ts-ignore
       window.customize = args;
-      import('@/router').then((router) => router.default.mount('root', args.route));
+      router.addRoute({
+        path: '/',
+        redirect: args.route as string
+      });
+      createApp(App).use(router).mount('#root');
     });
     break;
   case 'android':
   case 'ios':
   case 'web':
-    import('@/router').then((router) => router.default.mount('root'));
+    router.addRoute({
+      path: '/',
+      redirect: '/home'
+    });
+    createApp(App).use(router).mount('#root');
     break;
 }
