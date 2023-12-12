@@ -7,13 +7,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@capacitor/core": "^5.5.1",
     "@vitejs/plugin-vue": "^4.5.2",
     "@youliso/electronic": "^1.1.5",
     "vite": "^5.0.7",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "@capacitor/core": "^5.5.1"
   }
 }
