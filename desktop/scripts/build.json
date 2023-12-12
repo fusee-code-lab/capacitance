@@ -3,7 +3,7 @@
   "productName": "electrondemo",
   "appId": "org.youliso.electrondemo",
   "copyright": "MIT",
-  "asar": false,
+  "asar": true,
   "directories": {
     "output": "out"
   },

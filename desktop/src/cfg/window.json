@@ -8,6 +8,6 @@
   },
   "customize": {
     "title": "electrondemo",
-    "route": "/"
+    "route": "/home"
   }
 }
