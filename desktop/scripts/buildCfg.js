@@ -1,7 +1,6 @@
 const fs = require('fs');
-const { name, author, productName } = require('../package.json');
+const { name, author } = require('../package.json');
 const config = require('./build.json');
-const windowConfig = require('../src/cfg/window.json');
 const updateConfig = require('../src/cfg/update.json');
 
 /** 渲染进程不需要打包到file的包 */
@@ -17,10 +16,7 @@ config.publish = [
 config.productName = name;
 config.appId = `org.${author.name}.${name}`;
 config.npmRebuild = true; //是否Rebuild编译
-config.asar = true; //是否asar打包
-
-/** 窗口配置 **/
-windowConfig.customize.title = productName;
+config.asar = false; //是否asar打包
 
 /** win配置 **/
 config.nsis.displayLanguageSelector = false; //安装包语言提示
@@ -96,8 +92,7 @@ if (config.nsis.allowToChangeInstallationDirectory) {
     '!macroend';
 }
 
-fs.writeFileSync('scripts/app-update.yml', update);
+fs.writeFileSync('scripts/dev-update.yml', update);
 fs.writeFileSync('scripts/build.json', JSON.stringify(config, null, 2));
 fs.writeFileSync('scripts/installer.nsh', nsh);
-fs.writeFileSync('src/cfg/window.json', JSON.stringify(windowConfig, null, 2));
 fs.writeFileSync('src/cfg/update.json', JSON.stringify(updateConfig, null, 2));

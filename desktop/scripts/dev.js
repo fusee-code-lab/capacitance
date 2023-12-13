@@ -1,7 +1,7 @@
 const rollup = require('rollup');
 const { spawn } = require('child_process');
 const electron = require('electron');
-const { mainOptions, preloadOptions } = require('./electronCfg');
+const { mainOptions, preloadOptions } = require('./rollup.config');
 
 let electronProcess = null;
 let manualRestart = false;
@@ -58,11 +58,8 @@ function startElectron() {
   });
 }
 
-async function init() {
-  console.time(`dev `);
-  await startMain();
+console.time('dev');
+startMain().then(() => {
   startElectron();
-  console.timeEnd(`dev `);
-}
-
-init().then();
+  console.timeEnd('dev');
+});
